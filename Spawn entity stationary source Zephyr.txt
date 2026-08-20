@@ -1,0 +1,21 @@
+local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+_G.baseval = 6
+
+
+local entity = game.ReplicatedStorage:FindFirstChild("name entities"):Clone()
+entity.Parent = workspace
+
+local mainPart = entity.PrimaryPart or entity:FindFirstChildWhichIsA("BasePart")
+entity.PrimaryPart = mainPart
+
+entity:SetPrimaryPartCFrame(room.Parts.Floor.CFrame + Vector3.new(0, 6, 0))
+
+local light = entity:FindFirstChild("Light", true)
+if light then
+    light.Range = 0
+    local anim = TweenService:Create(light, TweenInfo.new(1), {Range = 21})
+    anim:Play()
+end
